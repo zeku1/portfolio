@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:portfolio/Components/assistanceButton.dart';
+import 'package:portfolio/Components/banner.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,7 +11,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: appBar(),
       backgroundColor: Colors.white,
-      body: Column(),
+      body: Column(
+        children: [HeroBanner(), AssistanceButton()],
+      ),
     );
   }
 
