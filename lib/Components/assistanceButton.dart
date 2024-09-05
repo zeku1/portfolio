@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart'; 
 
 class AssistanceButton extends StatelessWidget {
   const AssistanceButton({super.key});
@@ -8,6 +7,7 @@ class AssistanceButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return _assistanceText();
   }
+
 
  Widget _assistanceText() {
     return Container(
@@ -23,7 +23,7 @@ class AssistanceButton extends StatelessWidget {
             fontSize: 22, // Text size
           ),
         ),
-      ),
-    );
+      )
+    ]);
   }
 }
