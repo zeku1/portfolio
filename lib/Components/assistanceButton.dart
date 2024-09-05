@@ -8,21 +8,19 @@ class AssistanceButton extends StatelessWidget {
     return _assistanceText();
   }
 
-  Widget _assistanceText() {
-    return _assistanceButton();
-  }
 
-  Column _assistanceButton() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      GestureDetector(
+ Widget _assistanceText() {
+    return Container(
+      margin: const EdgeInsets.only(right: 95.0, top: 85.0), // Margin from the left and top edges
+      child: GestureDetector(
         onTap: () {
           print('Need Assistance text clicked');
         },
-        child: const Text(
+        child: Text(
           'Need Assistance?',
           style: TextStyle(
             color: Color(0xff8091F7), // Text color
-            fontSize: 16, // Optional: adjust the text size
+            fontSize: 22, // Text size
           ),
         ),
       )
