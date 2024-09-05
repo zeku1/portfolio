@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      backgroundColor: Color(0xffFFFFFF),
+      backgroundColor: Color(0xffF0FFFF),
       body: Column(
         children: [],
       ),
@@ -29,8 +29,8 @@ class HomePage extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 5,
-              blurRadius: 7,
+              spreadRadius: 10,
+              blurRadius: 15,
               offset: Offset(0, 3), // changes position of shadow
             ),
           ],
