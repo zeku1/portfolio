@@ -20,35 +20,49 @@ class HomePage extends StatelessWidget {
   AppBar appBar() {
     return AppBar(
       toolbarHeight: 150.0,
-      titleSpacing:
-          0, // Removes default spacing for title if you want full control
-      flexibleSpace: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: 20.0, vertical: 30.0), // Adjust padding as needed
+      titleSpacing: 0,
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          color: Color(0xffF0FFFF),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(15.0), // Adjust the radius as needed
+            bottomRight: Radius.circular(15.0), // Adjust the radius as needed
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.fromLTRB(55, 30, 20, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: const EdgeInsets.all(15),
+              // margin: const EdgeInsets.all(15),
               alignment: Alignment.center,
               child: SvgPicture.asset(
                 'assets/icons/logo.svg',
-                width: 60, // Adjust the width as needed
-                height: 60, // Adjust the height as needed
+                width: 60,
+                height: 60,
               ),
             ),
             GestureDetector(
               onTap: () {},
               child: Container(
+                margin: EdgeInsets.only(top: 10.0),
                 height: 45,
-                width: 87,
+                width: 90,
                 child: const Center(
                   child: Text(
                     'Menu',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 21),
+                      color: Colors.white,
+                      fontSize: 21,
+                    ),
                   ),
                 ),
                 decoration: BoxDecoration(
@@ -61,8 +75,8 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Colors.white,
-      elevation: 0.0,
+      backgroundColor: Colors.transparent, // Make AppBar background transparent
+      elevation: 0, // Remove default shadow
     );
   }
 }
