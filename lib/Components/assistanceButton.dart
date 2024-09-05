@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AssistanceButton extends StatelessWidget {
   const AssistanceButton({super.key});
@@ -9,23 +10,20 @@ class AssistanceButton extends StatelessWidget {
   }
 
   Widget _assistanceText() {
-    return _assistanceButton();
-  }
-
-  Column _assistanceButton() {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      GestureDetector(
+    return Container(
+      margin: const EdgeInsets.only(right: 95.0, top: 85.0), // Margin from the left and top edges
+      child: GestureDetector(
         onTap: () {
           print('Need Assistance text clicked');
         },
-        child: const Text(
+        child: Text(
           'Need Assistance?',
           style: TextStyle(
-            color: Color(0xff8091F7), // Text color
-            fontSize: 16, // Optional: adjust the text size
+            color: Color(0xff8091F7).withOpacity(0.9), // Text color
+            fontSize: 22, // Text size
           ),
         ),
-      )
-    ]);
+      ),
+    );
   }
 }
