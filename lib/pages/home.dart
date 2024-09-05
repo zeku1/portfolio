@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffFFFFFF),
       body: Column(
         children: [],
       ),
@@ -21,7 +21,11 @@ class HomePage extends StatelessWidget {
       titleSpacing: 0,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color(0xffF0FFFF),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(15.0), // Adjust the radius as needed
+            bottomRight: Radius.circular(15.0), // Adjust the radius as needed
+          ),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.3),
@@ -31,7 +35,7 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-        padding: const EdgeInsets.fromLTRB(55, 30, 20, 5),
+        padding: const EdgeInsets.fromLTRB(55, 30, 20, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -49,7 +53,7 @@ class HomePage extends StatelessWidget {
               child: Container(
                 margin: EdgeInsets.only(top: 10.0),
                 height: 45,
-                width: 87,
+                width: 90,
                 child: const Center(
                   child: Text(
                     'Menu',
