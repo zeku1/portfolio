@@ -4,15 +4,28 @@ import 'package:portfolio/Components/assistanceButton.dart';
 import 'package:portfolio/Components/banner.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final Function toggleTheme;
+  final bool isDarkMode;
+
+  const HomePage({super.key, required this.toggleTheme, required this.isDarkMode});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      backgroundColor: Colors.white,
+      backgroundColor: isDarkMode ? Colors.black : Colors.white,
       body: Column(
-        children: [HeroBanner(), AssistanceButton()],
+        children: [
+          HeroBanner(),
+          AssistanceButton(),
+          const SizedBox(height: 20), // Add some spacing
+          ElevatedButton(
+            onPressed: () {
+              toggleTheme();
+            },
+            child: Text(isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'),
+          ),
+        ],
       ),
     );
   }
@@ -23,17 +36,17 @@ class HomePage extends StatelessWidget {
       titleSpacing: 0,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          color: Color(0xffF0FFFF),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(15.0), // Adjust the radius as needed
-            bottomRight: Radius.circular(15.0), // Adjust the radius as needed
+          color: isDarkMode ? Colors.grey[800] : Color(0xffF0FFFF),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(15.0),
+            bottomRight: Radius.circular(15.0),
           ),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.3),
               spreadRadius: 5,
               blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
+              offset: const Offset(0, 3), // changes position of shadow
             ),
           ],
         ),
@@ -42,7 +55,6 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              // margin: const EdgeInsets.all(15),
               alignment: Alignment.center,
               child: SvgPicture.asset(
                 'assets/icons/logo.svg',
@@ -53,7 +65,7 @@ class HomePage extends StatelessWidget {
             GestureDetector(
               onTap: () {},
               child: Container(
-                margin: EdgeInsets.only(top: 10.0),
+                margin: const EdgeInsets.only(top: 10.0),
                 height: 45,
                 width: 90,
                 child: const Center(
@@ -67,7 +79,8 @@ class HomePage extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                      colors: [Color(0xff7981FC), Color(0xff8BE5DC)]),
+                    colors: [Color(0xff7981FC), Color(0xff8BE5DC)],
+                  ),
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),
