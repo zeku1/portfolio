@@ -9,11 +9,10 @@ class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState(); // Removed the underscore to make it public
 }
 
-class _MyAppState extends State<MyApp> {
-  // Variable to hold the current theme mode
+class MyAppState extends State<MyApp> {
   bool _isDarkMode = false;
 
   // Method to toggle the theme
@@ -29,7 +28,10 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: _isDarkMode ? ThemeData.dark() : ThemeData.light(),
-      home: HomePage(toggleTheme: _toggleTheme, isDarkMode: _isDarkMode),
+      home: HomePage(
+        toggleTheme: _toggleTheme,
+        isDarkMode: _isDarkMode,
+      ),
     );
   }
 }
