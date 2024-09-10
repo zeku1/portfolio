@@ -32,8 +32,9 @@ class _StatsState extends State<Stats> {
   Column _statsCarousel() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const SizedBox(height: 0),
+        // const SizedBox(height: 0),
         Container(
           height: 200,
           child: statsData.isEmpty

@@ -13,7 +13,7 @@ class HeroBanner extends StatelessWidget {
     return Container(
 
       padding: EdgeInsets.all(0),
-      margin: EdgeInsets.only(left: 5,top:30),
+      margin: EdgeInsets.only(left: 5,top:24),
       width: 380,
       height: 300,
       child:Center(
