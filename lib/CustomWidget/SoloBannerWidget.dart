@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/models/profile_model.dart';
+import 'package:portfolio/pages/profile.dart';
 
 class SoloBannerWidget extends StatefulWidget {
   ProfileModel profile;
@@ -19,6 +20,7 @@ class _soloBannerComponentState extends State<SoloBannerWidget> {
 
   Container _soloBanner(){
     return Container(
+      padding: EdgeInsets.only(left: 20),
       width: 393,
       child: Center(
         child: Stack(
@@ -31,7 +33,14 @@ class _soloBannerComponentState extends State<SoloBannerWidget> {
               left: 0.0,
               bottom: 0.0,
                 child: GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ProfilePage(profile: widget.profile))
+                    );
+                  },
                   child: SvgPicture.asset('assets/icons/ProfileSegmentButton.svg'),
                 ))
           ],

@@ -52,7 +52,7 @@ class _TeamBannerComponent extends State<TeamBannerComponent> {
                       child: ListView.separated(
                               itemCount: profiles.length,
                               scrollDirection: Axis.horizontal,
-                              padding: const EdgeInsets.only(left: 10, right: 0, top:80),
+                              padding: const EdgeInsets.only(left: 0, right: 0, top:80),
                               separatorBuilder: (context, index) => const SizedBox(width: 10),
                               itemBuilder: (context, index) {
                                 return SoloBannerWidget(profile: profiles[index]);
