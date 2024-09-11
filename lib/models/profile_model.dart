@@ -4,7 +4,7 @@ import 'package:portfolio/models/accordion_model.dart';
 class ProfileModel {
 
   String name;
-  String about;
+  Widget about;
   String facebookLink;
   String instagramLink;
   String githublink;
