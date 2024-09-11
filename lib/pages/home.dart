@@ -1,4 +1,3 @@
-// home.dart
 import 'package:flutter/material.dart';
 import 'package:portfolio/Components/assistanceButtonComponent.dart';
 import 'package:portfolio/Components/bannerComponent.dart';
@@ -8,18 +7,10 @@ import 'package:portfolio/Components/accordionComponent.dart';
 import 'package:portfolio/models/accordion_model.dart';
 import 'package:portfolio/Components/teamBannerComponent.dart';
 import 'package:portfolio/models/profile_model.dart';
-import 'package:portfolio/Theme/theme.dart';
-import 'package:portfolio/Components/menubarComponent.dart'; // Ensure this import is correct
+import 'package:portfolio/Components/menubarComponent.dart';
 
 class HomePage extends StatefulWidget {
-  final VoidCallback toggleTheme; // Use VoidCallback for the function type
-  final bool isDarkMode;
-
-  const HomePage({
-    Key? key,
-    required this.toggleTheme,
-    required this.isDarkMode,
-  }) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -43,27 +34,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-      color: widget.isDarkMode ? Colors.black : Colors.white,
-      child: Scaffold(
-        appBar: MenuBarComponent(
-          isDarkMode: widget.isDarkMode,
-          toggleTheme: widget.toggleTheme, // Access widget.toggleTheme
-        ),
-        backgroundColor: Colors.transparent,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              AssistanceButton(),
-              HeroBanner(),
-              Stats(),
-              AccordionComponent(accordionData: genAccordionData),
-              TeamBannerComponent(),
-              GroupContactComponent(),
-            ],
-          ),
+    return Scaffold(
+      appBar: const MenuBarComponent(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            AssistanceButton(),
+            HeroBanner(),
+            Stats(),
+            AccordionComponent(accordionData: genAccordionData),
+            TeamBannerComponent(),
+            GroupContactComponent(),
+          ],
         ),
       ),
     );
