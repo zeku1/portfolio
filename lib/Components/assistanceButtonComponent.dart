@@ -2,17 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AssistanceButton extends StatelessWidget {
-  const AssistanceButton({super.key});
+class AssistanceButton extends StatefulWidget {
+  final double topMargin;
+
+  AssistanceButton({Key? key, required this.topMargin}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => AssistanceButtonState();
+
+}
+
+class AssistanceButtonState extends State<AssistanceButton> {
 
   @override
   Widget build(BuildContext context) {
-    return _assistanceText();
+    return _assistanceText(widget.topMargin);
   }
 
-  Widget _assistanceText() {
+  Widget _assistanceText(double topMargin) {
     return Container(
-      margin: const EdgeInsets.only(right: 95.0, top: 75.0),
+      margin: EdgeInsets.only(right: 95.0, top: topMargin),
       // Margin from the left and top edges
       child: GestureDetector(
         onTap: () {
