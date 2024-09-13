@@ -20,7 +20,7 @@ class _soloBannerComponentState extends State<SoloBannerWidget> {
 
   Container _soloBanner(){
     return Container(
-      padding: EdgeInsets.only(left: 20),
+      padding: EdgeInsets.only(left: 10,right: 10),
       width: 393,
       child: Center(
         child: Stack(

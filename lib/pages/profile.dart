@@ -26,21 +26,28 @@ class ProfilePageState extends State<ProfilePage>{
             Stack(
               children: [
                 Container(
+                  padding: EdgeInsets.only(right: 20),
                   height: 330,
                     width: 390,
                     child: Container(
-                      margin: EdgeInsets.only(left: 50),
+                      padding: EdgeInsets.only(left: 50,right: 0),
                         child: AssistanceButton(topMargin: 30.0),
                     )
                 ),
                 Positioned(
-
                   bottom: 0.0,
-                    child: SoloBannerWidget(profile: widget.profile)
+                    left:0.0,
+                    child: Container(
+                        child: SoloBannerWidget(profile: widget.profile))
                 ),
               ],
             ),
-            
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              child: widget.profile.about,
+            )
+
+
 
 
           ],

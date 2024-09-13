@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/Components/assistanceButtonComponent.dart';
 import 'package:portfolio/Components/bannerComponent.dart';
 import 'package:portfolio/Components/groupContactComponent.dart';
@@ -23,7 +22,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _getAccordionData();
   }
