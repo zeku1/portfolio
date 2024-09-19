@@ -8,11 +8,12 @@ import 'package:portfolio/models/accordion_model.dart';
 import 'package:portfolio/Components/teamBannerComponent.dart';
 import 'package:portfolio/models/profile_model.dart';
 import 'package:portfolio/Components/menuBarComponent.dart';
+import 'package:portfolio/Theme/theme_widget.dart'; // Ensure this path is correct
 
 class HomePage extends StatefulWidget {
-  final void Function(bool) onThemeChanged;
+  final void Function(bool)? onThemeChanged; // Make the parameter nullable
 
-  const HomePage({super.key, required this.onThemeChanged});
+  const HomePage({super.key, this.onThemeChanged}); // Make the parameter optional
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -37,8 +38,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MenuBarComponent(),
-      backgroundColor: Color(0xFFF0FFFF), // Set the background color to #F0FFFF
+      appBar: MenuBarComponent(), // Use MenuBarComponent for the app bar
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor, // Use theme for background color
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -48,6 +49,7 @@ class _HomePageState extends State<HomePage> {
             AccordionComponent(accordionData: genAccordionData),
             TeamBannerComponent(),
             GroupContactComponent(),
+            ThemedWidget(), // Example of using ThemedWidget
           ],
         ),
       ),
