@@ -1,32 +1,23 @@
 import 'package:flutter/material.dart';
 
-class ThemeProvider extends StatefulWidget {
-  final Widget child;
-
-  const ThemeProvider({Key? key, required this.child}) : super(key: key);
-
-  @override
-  _ThemeProviderState createState() => _ThemeProviderState();
-
-  static _ThemeProviderState of(BuildContext context) {
-    return context.findAncestorStateOfType<_ThemeProviderState>()!;
-  }
-}
-
-class _ThemeProviderState extends State<ThemeProvider> {
+class ThemeProvider with ChangeNotifier {
   bool _isDarkMode = false;
 
-  void toggleTheme() {
-    setState(() {
-      _isDarkMode = !_isDarkMode;
-    });
+  bool get isDarkMode => _isDarkMode;
+
+  // Method to update the theme
+  void updateTheme(bool isDarkMode) {
+    _isDarkMode = isDarkMode;
+    notifyListeners();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Theme(
-      data: _isDarkMode ? ThemeData.dark() : ThemeData.light(),
-      child: widget.child,
-    );
+  // Getter to determine the scaffold background color based on the current theme
+  Color get scaffoldBackgroundColor {
+    return _isDarkMode ? Colors.black : Colors.white;
+  }
+
+  // Getter for AppBar color or other theme-related properties
+  Color get appBarColor {
+    return _isDarkMode ? Colors.grey[900]! : Colors.white;
   }
 }

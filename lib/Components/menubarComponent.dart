@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio/pages/home.dart'; // Ensure this import is correct
+import 'package:portfolio/pages/home.dart'; // Adjust the import based on your file structure
+import 'package:portfolio/Components/theme_provider.dart'; // Adjust the import based on your file structure
+import 'package:portfolio/Components/assistanceButtonComponent.dart'; // Adjust the import based on your file structure
+import 'package:provider/provider.dart';
 
 class MenuBarComponent extends StatefulWidget implements PreferredSizeWidget {
   const MenuBarComponent({super.key});
@@ -14,7 +17,7 @@ class MenuBarComponent extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _MenuBarComponentState extends State<MenuBarComponent> {
-  bool isDarkMode = false; // Toggle state for dark/light mode
+  bool _isDarkMode = false; // Toggle state for dark/light mode
 
   void _openMenuModal() {
     showGeneralDialog(
@@ -41,8 +44,18 @@ class _MenuBarComponentState extends State<MenuBarComponent> {
     );
   }
 
+  void _toggleTheme() {
+    setState(() {
+      _isDarkMode = !_isDarkMode;
+      final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+      themeProvider.updateTheme(_isDarkMode);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return AppBar(
       automaticallyImplyLeading: false,
       toolbarHeight: 120.0,
@@ -50,7 +63,7 @@ class _MenuBarComponentState extends State<MenuBarComponent> {
       flexibleSpace: Container(
         margin: const EdgeInsets.only(top: 30),
         decoration: BoxDecoration(
-          color: Colors.white, // Set the background color to white
+          color: themeProvider.scaffoldBackgroundColor, // Use the theme background color
           borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(15.0),
             bottomRight: Radius.circular(15.0),
@@ -72,13 +85,13 @@ class _MenuBarComponentState extends State<MenuBarComponent> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const HomePage()), // Ensure HomePage is defined and imported
+                  MaterialPageRoute(builder: (context) => HomePage(onThemeChanged: (bool isDarkMode) {})), // Navigate to the HomePage
                 );
               },
               child: Container(
                 alignment: Alignment.center,
                 child: SvgPicture.asset(
-                  'assets/icons/logo.svg',
+                  'assets/icons/logo.svg', // Ensure this path is correct
                   width: 60,
                   height: 60,
                 ),
@@ -115,78 +128,109 @@ class _MenuBarComponentState extends State<MenuBarComponent> {
     );
   }
 
-  // Modal content sliding from top
+  // Modal content with a smaller menu bar at the top
   Widget _buildModalContent() {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Material(
-        color: Colors.white, // Ensure background is transparent
-        child: Stack(
-          children: [
-            // Centered Container with team information
-            Positioned(
-              top: 150,
-              left: MediaQuery.of(context).size.width * 0.25, // Smaller width
-              right: MediaQuery.of(context).size.width * 0.25, // Smaller width
-              child: _buildCenteredContainer(),
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    return Material(
+      color: themeProvider.scaffoldBackgroundColor, // Use scaffoldBackgroundColor from your theme provider
+      child: Stack(
+        children: [
+          // Container for menu bar, positioned at the top
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: _buildMenuBarContainer(), // Sticks to the top
+          ),
+          // Centered Container with team information, adjusted to avoid overlap
+          Positioned(
+            top: 0.0, // Position it below the top menu bar
+            left: MediaQuery.of(context).size.width * 0.25, // Adjusted width for smaller modal
+            right: MediaQuery.of(context).size.width * 0.25,
+            child: _buildCenteredContainer(),
+          ),
+          // SVG logo in the bottom-left corner
+          Positioned(
+            bottom: 110,
+            left: 40,
+            child: SvgPicture.asset(
+              'assets/icons/logo.svg', // Ensure this path is correct
+              width: 60,
+              height: 60,
             ),
-            // SVG logo in the bottom-left corner
-            Positioned(
-              bottom: 110,
-              left: 40,
-              child: SvgPicture.asset(
-                'assets/icons/logo.svg',
-                width: 60,
-                height: 60,
-              ),
-            ),
-            // Close button in the bottom-right corner
-            Positioned(
-              bottom: 105,
-              right: 40,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop(); // Close the modal
-                },
-                child: Container(
-                  height: 45,
-                  width: 90,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xffFA847E), Color(0xffE8CD8A)],
-                    ),
-                    borderRadius: BorderRadius.circular(50),
+          ),
+          // Close button in the bottom-right corner
+          Positioned(
+            bottom: 105,
+            right: 40,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop(); // Close the modal
+              },
+              child: Container(
+                height: 45,
+                width: 90,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xffFA847E), Color(0xffE8CD8A)],
                   ),
-                  child: const Center(
-                    child: Text(
-                      'Close',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 21,
-                      ),
-                    ),
-                  ),
+                  borderRadius: BorderRadius.circular(50),
                 ),
-              ),
-            ),
-            // "Need assistance?" text with AssistanceButtonComponent style
-            Positioned(
-              bottom: 45, // Adjust as needed for spacing
-              left: 0,
-              right: 90,
-              child: Center(
-                child: Text(
-                  'Need Assistance?',
-                  style: GoogleFonts.poppins( // Apply AssistanceButtonComponent style
-                    textStyle: const TextStyle(
-                      color: Color(0xff8091F7), // Text color
+                child: const Center(
+                  child: Text(
+                    'Close',
+                    style: TextStyle(
+                      color: Colors.white,
                       fontSize: 21,
                     ),
                   ),
                 ),
               ),
             ),
-          ],
+          ),
+          // "Need assistance?" text with AssistanceButtonComponent style
+          Positioned(
+            bottom: 35, // Adjust as needed for spacing
+            left: 0,
+            right: 140,
+            child: Center(
+              child: Text(
+                'Need Assistance?',
+                style: GoogleFonts.poppins( // Apply AssistanceButtonComponent style
+                  textStyle: const TextStyle(
+                    color: Color(0xff8091F7), // Text color
+                    fontSize: 19,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // Dark/Light mode toggle button
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: _buildDarkLightModeButton(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Menu Bar container content
+  Widget _buildMenuBarContainer() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+      color: Colors.white, // Background color for the menu bar at the top
+      child: Center(
+        child: Text(
+          '', // Removed "Menu" text
+          style: GoogleFonts.poppins(
+            textStyle: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );
@@ -194,9 +238,9 @@ class _MenuBarComponentState extends State<MenuBarComponent> {
 
   Widget _buildCenteredContainer() {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
+      padding: const EdgeInsets.symmetric(vertical: 110, horizontal: 15),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
           colors: [
             Color(0xFFBF82FF),
             Color(0xFF8372FC),
@@ -205,9 +249,9 @@ class _MenuBarComponentState extends State<MenuBarComponent> {
             Color(0xFF8BE2D7),
           ],
         ),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15.0),
-          topRight: Radius.circular(15.0),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(0.0),
+          topRight: Radius.circular(0.0),
           bottomLeft: Radius.circular(30.0), // Curved bottom edges
           bottomRight: Radius.circular(30.0), // Curved bottom edges
         ),
@@ -219,87 +263,73 @@ class _MenuBarComponentState extends State<MenuBarComponent> {
             "Our team's portfolio",
             style: GoogleFonts.poppins(
               textStyle: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+                fontSize: 18,
                 height: 1.44, // Line height
               ),
             ),
           ),
-          const SizedBox(height: 10), // Less spacing for compact look
-          _buildTeamMember('Nathaniel Abadies', 'Marketing Specialist'),
+          const SizedBox(height: 5),
+          _buildTeamMember('Nathaniel Abadies', 'Marketing Expert'),
           _buildTeamMember('Loyce Nantes', 'Program Manager'),
-          _buildTeamMember('Ezekiel Lucena', 'Fullstack Dev'),
-          _buildTeamMember('Zedrick Zafra', 'Fullstack Dev'),
+          _buildTeamMember('Zedrick Zafra', 'Full Stack Developer'),
+          _buildTeamMember('Ezekiel Lucena', 'Full Stack Developer'),
           const SizedBox(height: 10),
-          _buildDarkLightToggle(), // Dark/Light mode toggle button
+          _buildDarkLightModeButton(),
         ],
       ),
     );
   }
 
-  Widget _buildTeamMember(String name, String title) {
+  Widget _buildTeamMember(String name, String role) {
     return Column(
       children: [
-        GestureDetector(
-          onTap: () {
-            print('$name tapped');
-          },
-          child: Text(
-            name,
-            style: GoogleFonts.poppins(
-              textStyle: const TextStyle(
-                fontSize: 46,
-                fontWeight: FontWeight.bold,
-                height: 1.15, // Line height
-              ),
+        Text(
+          name,
+          style: GoogleFonts.poppins(
+            textStyle: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
         Text(
-          title,
+          role,
           style: GoogleFonts.poppins(
             textStyle: const TextStyle(
-              fontSize: 20,
-              height: 1.44, // Line height
+              fontSize: 12,
+              color: Colors.grey,
             ),
           ),
         ),
-        const Divider(), // Separate team members with a line
+        const SizedBox(height: 10),
+        const Divider(thickness: 1, color: Colors.grey),
+        const SizedBox(height: 10),
       ],
     );
   }
 
-  Widget _buildDarkLightToggle() {
+  Widget _buildDarkLightModeButton() {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          isDarkMode = !isDarkMode; // Toggle between dark and light mode
-        });
-      },
+      onTap: _toggleTheme, // Toggle theme on tap
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        height: 45,
+        width: 90,
         decoration: BoxDecoration(
-          color: isDarkMode ? Colors.black : Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          gradient: const LinearGradient(
+            colors: [Color(0xff7981FC), Color(0xff8BE5DC)],
+          ),
+          borderRadius: BorderRadius.circular(50),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              isDarkMode ? Icons.nightlight_round : Icons.wb_sunny,
-              color: isDarkMode ? Colors.white : Colors.black,
+        child: Center(
+          child: Text(
+            themeProvider.isDarkMode ? 'Light Mode' : 'Dark Mode',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
             ),
-            const SizedBox(width: 10),
-            Text(
-              isDarkMode ? 'Dark Mode' : 'Light Mode',
-              style: GoogleFonts.poppins(
-                textStyle: TextStyle(
-                  color: isDarkMode ? Colors.white : Colors.black,
-                  fontSize: 18,
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
