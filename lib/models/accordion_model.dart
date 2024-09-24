@@ -57,7 +57,18 @@ class AccordionModel {
   static List<AccordionModel> getloyceProj(){
     List<AccordionModel> loyceProj = [];
 
-    loyceProj.add(AccordionModel(title: 'title', imagePath: 'imagePath', description: 'description'));
+    loyceProj.add(AccordionModel(
+        title: 'Tourism Malaysia',
+        imagePath: 'assets/images/tourismMalaysia.png',
+        description: 'As the lead supervisor and project manager, I ensured my team of developers and designers consistently hit the mark and matched the client’s vision perfectly'));
+    loyceProj.add(AccordionModel(
+        title: 'TiPM',
+        imagePath: 'assets/images/TiPM.png',
+        description: 'Malaysia’s go-to for tech innovation, needed a fresh look, and I was all in. My work is currently in development, with my team of developers and engineers bringing it to life.'));
+    loyceProj.add(AccordionModel(
+        title: 'The Greater Kedah',
+        imagePath: 'assets/images/TiPM.png',
+        description: 'Kedah is gearing up for some serious innovation and I’ve been working directly with the city’s mayor. They’ve loved the concept so far, and we’re set to move into development.'));
 
     return loyceProj;
   }
@@ -65,7 +76,10 @@ class AccordionModel {
   static List<AccordionModel> getNathanProj(){
     List<AccordionModel> nathanProj = [];
 
-    nathanProj.add(AccordionModel(title: 'title', imagePath: 'imagePath', description: 'description'));
+    nathanProj.add(AccordionModel(
+        title: 'Bean Rose Cafe',
+        imagePath: 'assets/images/Placeholder.png',
+        description: 'This project contains multiple deliverables, including WordPress, Elementor, InfinityFree for web hosting, and different plugins to enhance the experience.'));
 
     return nathanProj;
   }
@@ -73,7 +87,10 @@ class AccordionModel {
   static List<AccordionModel> getZedProj(){
     List<AccordionModel> zedProj = [];
 
-    zedProj.add(AccordionModel(title: 'title', imagePath: 'imagePath', description: 'description'));
+    zedProj.add(AccordionModel(
+        title: 'Merry meals',
+        imagePath: 'assets/images/Placeholder.png',
+        description: 'As the lead Front-end developer, I ensured the user interfaces are intuitive, user-friendly, and aligned with best practices in design.'));
 
     return zedProj;
   }

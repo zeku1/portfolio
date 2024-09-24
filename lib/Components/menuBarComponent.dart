@@ -9,22 +9,21 @@ class MenuBarComponent extends StatefulWidget implements PreferredSizeWidget {
   State<MenuBarComponent> createState() => MenuBarComponentState();
 
   @override
-  Size get preferredSize => const Size.fromHeight(120.0); // Adjust to the desired height
-
+  Size get preferredSize => Size.fromHeight(120.0); // Default height for AppBar
 }
-class MenuBarComponentState extends State<MenuBarComponent>{
+
+class MenuBarComponentState extends State<MenuBarComponent> {
+  bool isActive = false;
 
   @override
   Widget build(BuildContext context) {
-    return _menuBar();
-  }
-
-  AppBar _menuBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      toolbarHeight: 120.0,
+      toolbarHeight: 500 ,
       titleSpacing: 50,
-      flexibleSpace: Container(
+      flexibleSpace: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
         margin: const EdgeInsets.only(top: 30),
         decoration: BoxDecoration(
           color: const Color(0xffF0FFFF),
@@ -46,12 +45,10 @@ class MenuBarComponentState extends State<MenuBarComponent>{
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            HomePage())
+                  MaterialPageRoute(builder: (context) => HomePage()),
                 );
               },
               child: Container(
@@ -62,10 +59,14 @@ class MenuBarComponentState extends State<MenuBarComponent>{
                   height: 60,
                 ),
               ),
-            )
-          ,
+            ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                setState(() {
+                  isActive = !isActive; // Toggle menu visibility
+                }
+                );
+              },
               child: Container(
                 margin: const EdgeInsets.only(top: 5.0),
                 height: 45,
@@ -93,6 +94,5 @@ class MenuBarComponentState extends State<MenuBarComponent>{
       elevation: 0, // Remove default shadow
     );
   }
-
-
+  // Default height for AppBar
 }

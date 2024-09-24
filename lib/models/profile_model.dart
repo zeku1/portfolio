@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/CustomWidget/NathanAbout.dart';
+import 'package:portfolio/CustomWidget/ZedAbout.dart';
+import 'package:portfolio/CustomWidget/ZekAbout.dart';
+import 'package:portfolio/CustomWidget/loyceAboutWidget.dart';
 import 'package:portfolio/models/accordion_model.dart';
 
 class ProfileModel {
@@ -32,7 +36,7 @@ class ProfileModel {
 
     ProfileModel loyceProf = ProfileModel(
         name: 'Loyce Nantes',
-        about: 'A software engineering student under PWC-Lithan in Davao City and currently a UX/UI and a project manager asset at HipDigital and Hiplife Asia . I focus on website designing and targets a user-friendly, flexible, and on the trend websites. It is my greatest honor to showcase my skills and talents,not limiting to programming. I am always happy to apply the experience and skills I\'ve obtained',
+        about: LoyceAbout(name: 'Loyce Nantes'),
         facebookLink: 'https://www.facebook.com/Wiwisittt',
         instagramLink: 'https://www.instagram.com/luwisit',
         githublink: 'https://github.com/wiwisit',
@@ -52,7 +56,7 @@ class ProfileModel {
 
     ProfileModel nathanProf = ProfileModel(
         name: 'Nathaniel Abadies',
-        about: 'A Digital Business student at the PWC-Lithan Program in Davao City and currently a Marketing Associate at eduCLaaS. Nathaniel\'s primary responsibility as a marketing associate is to work with teams from various Asian countries to plan and create graphics that are tailored to specific cultural preferences and marketing needs. Nathaniel also works for companies such as EdFolio and SkoolTek, where he serves as an SEO optimizer for website visibility and a marketing specialist.',
+        about: NathanAbout(name: 'Nathaniel Abadies'),
         facebookLink: 'https://www.facebook.com/NathanielAbadiess',
         instagramLink: 'https://www.instagram.com/ur.fav_nathan',
         githublink: 'https://github.com/Under-Maintenance',
@@ -72,7 +76,7 @@ class ProfileModel {
 
     ProfileModel zedProf = ProfileModel(
         name: 'Zedrick Emmanuel Zafra',
-        about: '',
+        about: ZedAbout(name: 'Zedrick Zafra'),
         facebookLink: 'https://www.facebook.com/zedrickzafra',
         instagramLink: 'https://www.instagram.com/zebonyy/',
         githublink: 'https://github.com/ZedrickEmmanuel',
@@ -91,13 +95,13 @@ class ProfileModel {
     List<AccordionModel> zekProj = AccordionModel.getZekProj();
 
     ProfileModel zekProf = ProfileModel(
-        name: 'Zedrick Emmanuel Zafra',
-        about: '',
-        facebookLink: 'https://www.facebook.com/profile.php?id=100009430267874',
-        instagramLink: 'https://www.instagram.com/zebonyy/',
-        githublink: 'https://github.com/ZedrickEmmanuel',
-        linkedinlink: 'https://www.linkedin.com/in/zedrick-emmanuel-zafra/',
-        portfolioLink: 'https://zedrick-zafra.vercel.app/',
+        name: 'Ezekiel Kim Lucena',
+        about: ZekAbout(name: 'Ezekiel Lucena'),
+        facebookLink: 'https://www.facebook.com/ezekielmanlawe.lucena',
+        instagramLink: 'https://www.instagram.com/zeku_01/',
+        githublink: 'https://github.com/zeku1',
+        linkedinlink: 'https://www.linkedin.com/in/ezekiel-kim-lucena-14b8b0250/',
+        portfolioLink: 'https://ezekiel-portfolio.vercel.app/',
         profileBanner: 'assets/images/ZekProfile.png',
         accordionData: zekProj,
         achievements: [
