@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/CustomWidget/NathanAbout.dart';
+import 'package:portfolio/CustomWidget/ZedAbout.dart';
+import 'package:portfolio/CustomWidget/ZekAbout.dart';
 import 'package:portfolio/CustomWidget/loyceAboutWidget.dart';
 import 'package:portfolio/models/accordion_model.dart';
 
@@ -53,7 +56,7 @@ class ProfileModel {
 
     ProfileModel nathanProf = ProfileModel(
         name: 'Nathaniel Abadies',
-        about: LoyceAbout(name: 'Loyce Nantes'),
+        about: NathanAbout(name: 'Nathaniel Abadies'),
         facebookLink: 'https://www.facebook.com/NathanielAbadiess',
         instagramLink: 'https://www.instagram.com/ur.fav_nathan',
         githublink: 'https://github.com/Under-Maintenance',
@@ -73,7 +76,7 @@ class ProfileModel {
 
     ProfileModel zedProf = ProfileModel(
         name: 'Zedrick Emmanuel Zafra',
-        about: LoyceAbout(name: 'Loyce Nantes'),
+        about: ZedAbout(name: 'Zedrick Zafra'),
         facebookLink: 'https://www.facebook.com/zedrickzafra',
         instagramLink: 'https://www.instagram.com/zebonyy/',
         githublink: 'https://github.com/ZedrickEmmanuel',
@@ -92,13 +95,13 @@ class ProfileModel {
     List<AccordionModel> zekProj = AccordionModel.getZekProj();
 
     ProfileModel zekProf = ProfileModel(
-        name: 'Zedrick Emmanuel Zafra',
-        about: LoyceAbout(name: 'Loyce Nantes'),
-        facebookLink: 'https://www.facebook.com/profile.php?id=100009430267874',
-        instagramLink: 'https://www.instagram.com/zebonyy/',
-        githublink: 'https://github.com/ZedrickEmmanuel',
-        linkedinlink: 'https://www.linkedin.com/in/zedrick-emmanuel-zafra/',
-        portfolioLink: 'https://zedrick-zafra.vercel.app/',
+        name: 'Ezekiel Kim Lucena',
+        about: ZekAbout(name: 'Ezekiel Lucena'),
+        facebookLink: 'https://www.facebook.com/ezekielmanlawe.lucena',
+        instagramLink: 'https://www.instagram.com/zeku_01/',
+        githublink: 'https://github.com/zeku1',
+        linkedinlink: 'https://www.linkedin.com/in/ezekiel-kim-lucena-14b8b0250/',
+        portfolioLink: 'https://ezekiel-portfolio.vercel.app/',
         profileBanner: 'assets/images/ZekProfile.png',
         accordionData: zekProj,
         achievements: [

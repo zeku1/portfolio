@@ -24,17 +24,19 @@ class LoyceAbout extends StatelessWidget {
             children: [
 
               Text(
-                'Hey there! I\'m ',
-                style: TextStyle(
-                  fontSize: 21,
-                  fontWeight: FontWeight.w400,
-                ),
+                '    Hey there! I\'m ',
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                  ),
+                )
               ),
               GradientText(
                 name,
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
-                    fontSize: 21,
+                    fontSize: 20,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -50,7 +52,9 @@ class LoyceAbout extends StatelessWidget {
             ],
           ),
           SizedBox(height: 50), // Add some spacing between the elements
-          Text.rich(
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+              child: Text.rich(
             TextSpan(
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
@@ -61,12 +65,17 @@ class LoyceAbout extends StatelessWidget {
                 TextSpan(
                   text:
                   'A software engineering student under PWC-Lithan in Davao City and currently a UX/UI and a Project Manager asset at HipDigital and Hiplife Asia. I focus on website designing and ',
+                  style: GoogleFonts.poppins(
+                    textStyle: TextStyle(
+                      fontSize: 20
+                    )
+                  )
                 ),
                 GradientTextSpan(
                   text: 'targets a user-friendly, flexible, and on the trend websites.',
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(
-                      fontSize: 21,
+                      fontSize: 20,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -80,12 +89,17 @@ class LoyceAbout extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: 'It is my greatest honor to showcase my skills and talents, not limiting to programming. I am always happy to apply the experience and skills I\'ve obtained'
+                  text: 'It is my greatest honor to showcase my skills and talents, not limiting to programming. I am always happy to apply the experience and skills I\'ve obtained',
+                    style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                      fontSize: 20
+                    )
+          )
                 )
               ],
             ),
             textAlign: TextAlign.justify,
-          ),
+          )),
         ],
       ),
     );

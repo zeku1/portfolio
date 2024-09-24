@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/Components/assistanceButtonComponent.dart';
 import 'package:portfolio/Components/bannerComponent.dart';
 import 'package:portfolio/Components/groupContactComponent.dart';
@@ -44,7 +45,47 @@ class _HomePageState extends State<HomePage> {
             AssistanceButton(topMargin: 75.0,),
             HeroBanner(),
             Stats(),
-            AccordionComponent(accordionData: genAccordionData),
+            Column(
+              children: [
+                Center(
+                  child: Container(
+                    margin: EdgeInsets.only(top: 15, bottom: 10),
+                    child: RichText(text: TextSpan(
+                        style: TextStyle(
+                            fontSize: 21
+                        ),
+                        children: [
+                          TextSpan(
+                              text: 'Need ',
+                              style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              )
+                          ),
+                          TextSpan(
+                              text: 'help ',
+                              style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                      color: Color(0xff7B84FB),
+                                      fontWeight: FontWeight.w700
+                                  ))
+                          ),
+                          TextSpan(
+                              text: 'on these?',
+                              style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                      color: Colors.black
+                                  ))
+                          )
+                        ]
+                    ),
+                    ),
+                  ),
+                ),
+                AccordionComponent(accordionData: genAccordionData),
+              ],
+            ),
             TeamBannerComponent(),
             GroupContactComponent(),
           ],
