@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
             AccordionComponent(accordionData: genAccordionData),
             TeamBannerComponent(),
             GroupContactComponent(),
-            ThemedWidget(), // Example of using ThemedWidget
+            //ThemedWidget(), // Example of using ThemedWidget
           ],
         ),
       ),

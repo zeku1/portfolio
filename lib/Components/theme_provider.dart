@@ -1,28 +1,38 @@
 import 'package:flutter/material.dart';
 
-class ThemeProvider extends ChangeNotifier {
-  bool _isDarkMode = false;
+class ThemeProvider with ChangeNotifier {
+  bool _isDarkMode = false; // default to light mode
 
   bool get isDarkMode => _isDarkMode;
 
-  ThemeData get currentTheme => _isDarkMode ? _darkTheme : _lightTheme;
+  Color get menuButtonColor => isDarkMode ? Colors.white : Colors.black;
 
-  ThemeData _darkTheme = ThemeData(
-    brightness: Brightness.dark,
-    primaryColor: const Color(0xFF1C0E1C), // Corrected syntax
-   scaffoldBackgroundColor: const Color(0xFF1C0E1C), // Corrected syntax
-    // Add other dark theme properties
+  Color get closeButtonColor => isDarkMode ? Colors.white : Colors.black;
+
+  ThemeData get currentTheme => _isDarkMode ? darkTheme : lightTheme;
+
+  // Example light theme
+  ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: const Color(0xFFF0FFFF),
+    textTheme: const TextTheme(
+      headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF1C0E1C),),
+    ),
+    // Add more properties as needed
   );
 
-  ThemeData _lightTheme = ThemeData(
-    brightness: Brightness.light,
-    primaryColor: const Color(0xFFF0FFFF), // Corrected syntax
-    scaffoldBackgroundColor: const Color(0xFFF0FFFF), // Corrected syntax
-    // Add other light theme properties
+  // Example dark theme
+  ThemeData darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    scaffoldBackgroundColor: Color(0xFF1C0E1C),
+    textTheme: const TextTheme(
+      headlineMedium: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFF0FFFF),),
+    ),
+    // Add more properties as needed
   );
 
   void updateTheme(bool isDarkMode) {
     _isDarkMode = isDarkMode;
-    notifyListeners(); // Notify the app to rebuild with the new theme
+    notifyListeners();
   }
 }

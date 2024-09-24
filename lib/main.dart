@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Components/theme_provider.dart'; // Adjust the path as needed
 import 'package:provider/provider.dart';
-import 'package:portfolio/pages/home.dart'; // Import your HomePage
+import 'package:portfolio/Components/theme_provider.dart';
+import 'package:portfolio/pages/home.dart';
 
 void main() {
   runApp(
@@ -17,18 +17,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: themeProvider.currentTheme, // Use the current theme
-          home: HomePage(
-            onThemeChanged: (bool isDarkMode) {
-              // Optional: Handle theme changes if needed
-            },
-          ),
-        );
-      },
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Portfolio App',
+      theme: themeProvider.lightTheme,
+      darkTheme: themeProvider.darkTheme,
+      themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      home: const HomePage(),
     );
   }
 }
